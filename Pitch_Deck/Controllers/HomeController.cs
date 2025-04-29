@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Pitch_Deck.Controllers
 {
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -23,6 +24,23 @@ namespace Pitch_Deck.Controllers
             return View();
         }
 
+        public IActionResult Test()
+        {
+            return View();
+        }
+
+        public IActionResult Submit(Contact model)
+        {
+            if (ModelState.IsValid)
+            {
+                _logger.LogInformation("Form submitted: Name={Name}, Email={Email}, Phone={Phone}, Message={Message}",
+                    model.Name, model.Email, model.PhoneNo, model.Message);
+
+                
+            }
+
+            return View(model);
+        }
         public IActionResult Privacy()
         {
             return View();
